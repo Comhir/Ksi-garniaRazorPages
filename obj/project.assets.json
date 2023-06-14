@@ -8,24 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Alvani\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Adam\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alvani\\OneDrive\\Dokumenty\\StudiaGitHub\\AlvaniCode\\DOTNET\\KsiegarniaProject\\KsiegarniaProject.csproj",
+      "projectUniqueName": "G:\\STUDIA\\SEMESTR 4\\projdotnet\\KsiegarniaProject.csproj",
       "projectName": "KsiegarniaProject",
-      "projectPath": "C:\\Users\\Alvani\\OneDrive\\Dokumenty\\StudiaGitHub\\AlvaniCode\\DOTNET\\KsiegarniaProject\\KsiegarniaProject.csproj",
-      "packagesPath": "C:\\Users\\Alvani\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alvani\\OneDrive\\Dokumenty\\StudiaGitHub\\AlvaniCode\\DOTNET\\KsiegarniaProject\\obj\\",
+      "projectPath": "G:\\STUDIA\\SEMESTR 4\\projdotnet\\KsiegarniaProject.csproj",
+      "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
+      "outputPath": "G:\\STUDIA\\SEMESTR 4\\projdotnet\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Alvani\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Adam\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -70,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

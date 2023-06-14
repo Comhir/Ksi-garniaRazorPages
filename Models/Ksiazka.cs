@@ -1,8 +1,12 @@
 ﻿namespace KsiegarniaProject.Models
 {
-	public class Ksiazka
+	public class Book
 	{
 		public int Id { get; set; }
 		public string Title { get; set; }
+		public Author Author { get; set; }
+		public Category Category { get; set; }
+		public ICollection<BookCategory> BookCategories { get; set; }
+		public ICollection<BookAuthor> BookAuthors { get; set; }
     }
 }
