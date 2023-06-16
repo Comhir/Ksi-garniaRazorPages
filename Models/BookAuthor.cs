@@ -1,4 +1,6 @@
-﻿namespace KsiegarniaProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace KsiegarniaProject.Models
 {
     public class BookAuthor
     {
