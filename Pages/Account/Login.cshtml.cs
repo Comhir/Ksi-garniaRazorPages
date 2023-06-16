@@ -14,16 +14,22 @@ namespace KsiegarniaProject.Pages.Account
 
         public void OnPost()
         {
+            if (!ModelState.IsValid) return;
+            if (Credential.UserName == "admin" && Credential.Password == "admin")
+            {
 
+            }
         }
     }
 
     public class Credential
     {
         [Required(ErrorMessage = "Nazwa u¿ytkownika jest wymagana")]
+        [Display(Name = "Nazwa u¿ytkownika")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "Has³o jest wymagane")]
         [DataType(DataType.Password)]
+        [Display(Name = "Has³o")]
         public string Password { get; set; }
     }
 }
