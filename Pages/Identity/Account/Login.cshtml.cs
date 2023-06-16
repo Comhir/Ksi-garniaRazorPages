@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
-namespace KsiegarniaProject.Pages.Account
+namespace KsiegarniaProject.Pages.Identity.Account
 {
     public class LoginModel : PageModel
     {
