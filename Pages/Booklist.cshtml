@@ -1,4 +1,18 @@
 ﻿@page
+@using KsiegarniaProject.Models;
 @model KsiegarniaProject.Pages.BooklistModel
 @{
 }
+<table class=" = "table table-sm table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+    </tr>
+    @foreach (Book b in Model.books)
+    {
+        <tr>
+            <td>@b.Id</td>
+            <td>@b.Title</td>
+        </tr>
+    }
+</table>

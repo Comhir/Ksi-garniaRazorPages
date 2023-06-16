@@ -22,10 +22,7 @@ namespace KsiegarniaProject.Pages.BookFunctions
 		}
 		public IActionResult OnPost()
 		{
-			LoadDB();
-			productDB.Create(newBook);
-			SaveDB();
-			return RedirectToPage("List");
+			return null;
 		}
 
 	}
