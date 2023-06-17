@@ -2,6 +2,7 @@ using KsiegarniaProject;
 using KsiegarniaProject.Data;
 using KsiegarniaProject.Interfaces;
 using KsiegarniaProject.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -26,18 +27,17 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 	options.Password.RequireLowercase = false;
 	options.Password.RequireUppercase = false;
 	options.Password.RequiredLength = 5;
-}).AddEntityFrameworkStores<DataContext>().AddDefaultUI();
+}).AddEntityFrameworkStores<DataContext>().AddRoles<IdentityRole>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
 	options.Cookie.HttpOnly = true;
 	options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-	options.LoginPath = "/Identity/Account/Login";
-	options.LogoutPath = "/Identity/Account/Logout";
-	options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+	options.LoginPath = "/Login";
+	options.LogoutPath = "/Logout";
+	options.AccessDeniedPath = "/AccessDenied";
 	options.SlidingExpiration = true;
 });
 builder.Services.AddRazorPages();
-
 
 var app = builder.Build();
 

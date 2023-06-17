@@ -18,30 +18,30 @@
                         <form asp-route-returnUrl="@Model.ReturnUrl" class="px-md-2" method="post">
                             <div class="form-outline mb-2">
                                 <span asp-validation-for="User.UserName" class="text-danger"></span>
-                                <input type="text" asp-for="User.UserName" class="form-control" />
                                 <label class="form-label" asp-for="User.UserName"></label>
+                                <input type="text" asp-for="User.UserName" class="form-control" placeholder="Podaj nazwę użytkownika"/>
                             </div>
 
                             <div class="form-outline mb-2">
                                 <span asp-validation-for="User.Email" class="text-danger"></span>
-                                <input type="email" asp-for="User.Email" class="form-control" />
                                 <label class="form-label" asp-for="User.Email"></label>
+                                <input type="email" asp-for="User.Email" class="form-control" placeholder="Podaj email"/>
                             </div>
 
                             <div class="form-outline mb-2">
                                 <span asp-validation-for="User.Password" class="text-danger"></span>
-                                <input type="password" asp-for="User.Password" class="form-control" />
                                 <label class="form-label" asp-for="User.Password"></label>
+                                <input type="password" asp-for="User.Password" class="form-control" placeholder="Podaj hasło"/>
                             </div>
 
                             <div class="form-outline mb-2">
                                 <span asp-validation-for="User.ConfirmPassword" class="text-danger"></span>
-                                <input type="password" asp-for="User.ConfirmPassword" class="form-control" />
                                 <label class="form-label" asp-for="User.ConfirmPassword"></label>
+                                <input type="password" asp-for="User.ConfirmPassword" class="form-control" placeholder="Powtórz hasło" />
                             </div>
 
                             <div class="mb-4">
-
+                                <label class="form-label" asp-for="User.Role"></label>
                                 <select asp-for="User.Role" class="select">
                                     <option value="Kierownik">Kierownik</option>
                                     <option value="Pracownik">Pracownik</option>

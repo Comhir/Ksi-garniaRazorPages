@@ -1,6 +1,5 @@
 using KsiegarniaProject.Interfaces;
 using KsiegarniaProject.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KsiegarniaProject.Pages
