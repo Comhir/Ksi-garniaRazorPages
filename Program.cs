@@ -1,6 +1,7 @@
 using KsiegarniaProject;
 using KsiegarniaProject.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.SqlServer;
@@ -18,7 +19,12 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(conne
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
 	options.SignIn.RequireConfirmedAccount = false;
-}).AddEntityFrameworkStores<DataContext>();
+	options.Password.RequireNonAlphanumeric = false;
+	options.Password.RequireDigit = false;
+	options.Password.RequireLowercase = false;
+	options.Password.RequireUppercase = false;
+	options.Password.RequiredLength = 5;
+}).AddEntityFrameworkStores<DataContext>().AddDefaultUI();
 builder.Services.ConfigureApplicationCookie(options =>
 {
 	options.Cookie.HttpOnly = true;
