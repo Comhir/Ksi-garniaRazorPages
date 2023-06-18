@@ -1,10 +1,30 @@
 ﻿@page
 @model IndexModel
+@using KsiegarniaProject.Models;
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table class="table table-success table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Kategoria</th>
+        <th>Cena</th>
+        <th>Ilość</th>
+        <th>Akcja</th>
+    </tr>
+    @foreach (Book b in Model.books)
+    {
+        <tr>
+            <td>@b.Id</td>
+            <td>@b.Title</td>
+            <td>@b.Author</td>
+            <td>@b.Kategoria</td>
+            <td>@b.Cena</td>
+            <td>@b.Ilość</td>
+            <td>Akcja</td>
+        </tr>
+    }
+</table>

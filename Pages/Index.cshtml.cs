@@ -1,22 +1,26 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using KsiegarniaProject.DTO;
+using KsiegarniaProject.Interfaces;
+using KsiegarniaProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KsiegarniaProject.Pages
 {
-	[AllowAnonymous]
-	public class IndexModel : PageModel
-	{
-		private readonly ILogger<IndexModel> _logger;
+    [Authorize]
+    public class IndexModel : PageModel
+    {
+        private readonly IBookRepository _bookRepository;
+        public IndexModel(IBookRepository bookRepository)
+        {
+            _bookRepository = bookRepository;
+        }
+        public ICollection<BookAuthorCategoryDTO> Books { get; set; }
+        public void OnGet()
+        {
+            var books = _bookRepository.GetBooks();
+            Books = _bookRepository.GetBooks();
+        }
 
-		public IndexModel(ILogger<IndexModel> logger)
-		{
-			_logger = logger;
-		}
-
-		public void OnGet()
-		{
-
-		}
-	}
+    }
 }
