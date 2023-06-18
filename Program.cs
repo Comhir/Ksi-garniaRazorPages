@@ -20,6 +20,7 @@ builder.Services.AddTransient<Seed>();
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
 	options.SignIn.RequireConfirmedAccount = false;
