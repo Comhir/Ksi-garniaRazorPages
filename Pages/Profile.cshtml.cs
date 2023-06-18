@@ -1,3 +1,6 @@
+using AutoMapper;
+using KsiegarniaProject.DTO;
+using KsiegarniaProject.Interfaces;
 using KsiegarniaProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,21 +13,18 @@ namespace KsiegarniaProject.Pages
     [Authorize]
     public class ProfileModel : PageModel
     {
-        private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
-        public ProfileModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        private readonly IUserRepository _userRepository; 
+        public ProfileModel(IUserRepository userRepository)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
+            _userRepository = userRepository;
         }
 
         public string Id { get; set; }
-        public AppUser User { get; set; }
+        public UserDTO User { get; set; }
         public async void OnGetAsync(string id)
         {
             Id = id;
-            User = await _userManager.FindByIdAsync(id);
-            
+            User = _userRepository.GetUserById(id);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace KsiegarniaProject.Data
         public DbSet<BookAuthor> BookAuthors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<BookCategory> BookCategories { get; set; }
-        public DbSet<AppUser> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

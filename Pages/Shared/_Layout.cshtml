@@ -35,7 +35,7 @@
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Wyloguj @User.Identity.Name</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Profile" asp-route-id="@signInManager.UserManager.GetUserId(User)">@User.Identity.Name</a>
                             </li>
                         } else
                         {
