@@ -1,6 +1,7 @@
 using KsiegarniaProject;
 using KsiegarniaProject.Data;
 using KsiegarniaProject.Interfaces;
+using KsiegarniaProject.Models;
 using KsiegarniaProject.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +20,7 @@ builder.Services.AddTransient<Seed>();
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
 	options.SignIn.RequireConfirmedAccount = false;
 	options.Password.RequireNonAlphanumeric = false;

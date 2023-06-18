@@ -10,11 +10,11 @@ namespace KsiegarniaProject.Pages
     [Authorize(Roles = "Administrator")]
     public class RegisterModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RegisterModel(UserManager<IdentityUser> userManager, ILogger<RegisterModel> logger, RoleManager<IdentityRole> roleManager)
+        public RegisterModel(UserManager<AppUser> userManager, ILogger<RegisterModel> logger, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _logger = logger;
@@ -34,7 +34,7 @@ namespace KsiegarniaProject.Pages
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var user = new AppUser
                 {
                     UserName = User.UserName,
                     Email = User.Email,

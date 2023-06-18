@@ -60,11 +60,13 @@ namespace KsiegarniaProject
                 string MANAGER_ROLE_ID = "4f593732-1151–435c-99df-1c6a05b52071";
                 string WORKER_ROLE_ID = "9faaa0de-bcc1–437e-9db9-30d6dbe8de2f";
 
-                var users = new List<IdentityUser>()
+                var users = new List<AppUser>()
                 {
-                    new IdentityUser()
+                    new AppUser()
                     {
                         Id = ADMIN_ID,
+                        FirstName = "Pan",
+                        LastName = "Admin",
                         UserName = "Administrator",
                         NormalizedUserName = "ADMINISTRATOR",
                         Email = "admin@test.com",
@@ -98,7 +100,7 @@ namespace KsiegarniaProject
                     }
                 };
 
-                PasswordHasher<IdentityUser> hasher = new PasswordHasher<IdentityUser>();
+                PasswordHasher<AppUser> hasher = new PasswordHasher<AppUser>();
                 users[0].PasswordHash = hasher.HashPassword(users[0], "supersecret");
 
                 var userRole = new IdentityUserRole<string>()

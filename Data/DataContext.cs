@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KsiegarniaProject.Data
 {
-    public class DataContext : IdentityDbContext<IdentityUser, IdentityRole, string>
+    public class DataContext : IdentityDbContext<AppUser, IdentityRole, string>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) 
         {
@@ -17,7 +17,7 @@ namespace KsiegarniaProject.Data
         public DbSet<BookAuthor> BookAuthors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<BookCategory> BookCategories { get; set; }
-        public DbSet<IdentityUser> Users { get; set; }
+        public DbSet<AppUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
