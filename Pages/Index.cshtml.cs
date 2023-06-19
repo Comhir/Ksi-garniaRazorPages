@@ -15,10 +15,10 @@ namespace KsiegarniaProject.Pages
         {
             _bookRepository = bookRepository;
         }
-        public ICollection<BookAuthorCategoryDTO> Books { get; set; }
+        public ICollection<BookDTO> Books { get; set; }
         public void OnGet()
         {
-            var books = _bookRepository.GetBooks();
+            Books = _bookRepository.GetBooks();
             
         }
 

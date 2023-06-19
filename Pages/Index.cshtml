@@ -1,5 +1,6 @@
 ﻿@page
 @model IndexModel
+@using KsiegarniaProject.DTO;
 @using KsiegarniaProject.Models;
 @{
     ViewData["Title"] = "Home page";
@@ -15,16 +16,16 @@
         <th>Ilość</th>
         <th>Akcja</th>
     </tr>
-    @*@foreach (Book b in Model.books)
+    @foreach (BookDTO b in Model.Books)
     {
         <tr>
             <td>@b.Id</td>
             <td>@b.Title</td>
-            <td>@b.Author</td>
-            <td>@b.Kategoria</td>
-            <td>@b.Cena</td>
-            <td>@b.Ilość</td>
+            <td>@b.Author.FirstName @b.Author.LastName</td>
+            <td>@b.Categories.First().Name</td>
+            <td>@b.Price</td>
+            <td>@b.Quantity</td>
             <td>Akcja</td>
         </tr>
-    }*@
+    }
 </table>
