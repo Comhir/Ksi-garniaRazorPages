@@ -2,6 +2,7 @@
 using KsiegarniaProject.DTO;
 using KsiegarniaProject.Interfaces;
 using KsiegarniaProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace KsiegarniaProject.Repositories
 {
@@ -33,16 +34,22 @@ namespace KsiegarniaProject.Repositories
 
 		public ICollection<BookDTO> GetBooks()
 		{
-			return _context.Books.Select(b => new BookDTO
-			{
-				Id = b.Id,
-				Author = b.Author,
-				Price = b.Price,
-				Quantity = b.Quantity,
-				Title = b.Title,
-				Categories = _context.BookCategories.Join(_context.Categories, a => a.CategoryId, b => b.Id, (a,b) => b).ToList()
-			}).ToList();
-		}
+            var books = _context.Books
+                .Include(bc => bc.BookCategories)
+                .ThenInclude(c => c.Category)
+                .Select(b => new BookDTO
+                {
+                    Id = b.Id,
+                    Author = b.Author,
+                    Price = b.Price,
+                    Quantity = b.Quantity,
+                    Title = b.Title,
+                    Categories = b.BookCategories.Select(c => c.Category).ToList()
+                })
+                .ToList();
+
+            return books;
+        }
 
 		public bool Save()
 		{
