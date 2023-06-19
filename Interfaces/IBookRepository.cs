@@ -1,10 +1,11 @@
-﻿using KsiegarniaProject.Models;
+﻿using KsiegarniaProject.DTO;
+using KsiegarniaProject.Models;
 
 namespace KsiegarniaProject.Interfaces
 {
 	public interface IBookRepository
 	{
-		ICollection<Book> GetBooks();
+		ICollection<BookAuthorCategoryDTO> GetBooks();
 		Book GetBook(int id);
 		bool BookExists(int id);
 		bool Save();
