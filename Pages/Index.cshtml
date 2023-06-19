@@ -5,18 +5,63 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .category-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .category-popup {
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 5px;
+        z-index: 9999;
+        display: none;
+        top: 0;
+        left: 100%;
+        margin-left: 10px;
+    }
+
+    .category-container:hover .category-popup {
+        display: block;
+    }
+
+    .category {
+        display: block;
+        margin-bottom: 5px;
+        white-space: nowrap;
+    }
+</style>
+
+<script>
+    function showCategories(bookId) {
+        var categories = document.getElementById("categories-" + bookId);
+        categories.style.display = "inline-block";
+    }
+
+    function hideCategories(bookId) {
+        var categories = document.getElementById("categories-" + bookId);
+        categories.style.display = "none";
+    }
+</script>
+
 <div class="my-5 mx-5">
-    <table class="table table-success table-striped table-bordered  table-hover ">
+    <table class="table table-success table-striped table-bordered table-hover">
         <thead class="table-dark">
-        <tr>
-            <th>Id</th>
-            <th>Tytuł</th>
-            <th>Autor</th>
-            <th>Kategoria</th>
-            <th>Cena</th>
-            <th>Ilość</th>
-            <th>Akcja</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Tytuł</th>
+                <th>Autor</th>
+                <th>Kategoria</th>
+                <th>Cena</th>
+                <th>Ilość</th>
+                <th>Akcja</th>
+            </tr>
         </thead>
         @foreach (BookDTO b in Model.Books)
         {
@@ -24,12 +69,21 @@
                 <td>@b.Id</td>
                 <td>@b.Title</td>
                 <td>@b.Author.FirstName @b.Author.LastName</td>
-                <td>@b.Categories.First().Name</td>
+                <td>
+                    <div class="category-container">
+                        <span class="category">@b.Categories.First().Name</span>
+                        <div class="category-popup" id="categories-@b.Id">
+                            @foreach (Category c in b.Categories.Skip(1))
+                            {
+                                <span class="category">@c.Name</span>
+                            }
+                        </div>
+                    </div>
+                </td>
                 <td>@b.Price</td>
                 <td>@b.Quantity</td>
                 <td>Akcja</td>
             </tr>
         }
-
     </table>
 </div>

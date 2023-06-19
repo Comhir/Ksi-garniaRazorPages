@@ -24,7 +24,18 @@ namespace KsiegarniaProject
                         Title = "Lord of the Rings",
                         BookCategories = new List<BookCategory>()
                         {
-                            new BookCategory { Category = new Category() {Name = "Fantasy" } }
+                            new BookCategory
+                            {
+                                Category = new Category() {Name = "Fantasy" },
+                            },
+                            new BookCategory
+                            {
+                                Category = new Category() {Name = "Przygoda" },
+                            },
+                            new BookCategory
+                            {
+                                Category = new Category() {Name = "Powieść" },
+                            }
                         },
                         Author = new Author {
                             FirstName = "J.R.R",
@@ -38,7 +49,14 @@ namespace KsiegarniaProject
                         Title = "Zbrodnia i kara",
                         BookCategories = new List<BookCategory>()
                         {
-                            new BookCategory { Category = new Category() {Name = "Powieść kryminalna" } }
+                            new BookCategory
+                            { 
+                                Category = new Category() {Name = "Powieść" }
+                            },
+                            new BookCategory
+                            {
+                                Category = new Category() {Name = "Powieść kryminalna" }
+                            }
                         },
                         Author = new Author {
                             FirstName = "Fiodor",
