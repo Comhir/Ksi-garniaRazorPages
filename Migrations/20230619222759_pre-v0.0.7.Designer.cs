@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KsiegarniaProject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230619201545_pre-v0.0.1")]
-    partial class prev001
+    [Migration("20230619222759_pre-v0.0.7")]
+    partial class prev007
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

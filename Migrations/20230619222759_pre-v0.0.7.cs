@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace KsiegarniaProject.Migrations
 {
-    public partial class prev001 : Migration
+    public partial class prev007 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
