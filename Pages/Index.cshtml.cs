@@ -19,7 +19,7 @@ namespace KsiegarniaProject.Pages
         public void OnGet()
         {
             var books = _bookRepository.GetBooks();
-            Books = _bookRepository.GetBooks();
+            
         }
 
     }

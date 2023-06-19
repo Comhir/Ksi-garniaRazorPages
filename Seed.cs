@@ -14,42 +14,41 @@ namespace KsiegarniaProject
 
         public void SeedDataContext()
         {
-            if(!_context.BookAuthors.Any())
+            if(!_context.Books.Any())
             {
-                var bookAuthors = new List<BookAuthor>()
+                var books = new List<Book>()
                 {
-                    new BookAuthor()
+                    new Book()
                     {
-                        Book = new Book()
+                       
+                        Title = "Lord of the Rings",
+                        BookCategories = new List<BookCategory>()
                         {
-                            Title = "Lord of the Rings",
-                            BookCategories = new List<BookCategory>()
-                            {
-                                new BookCategory { Category = new Category() {Name = "Fantasy" } }
-                            }
+                            new BookCategory { Category = new Category() {Name = "Fantasy" } }
                         },
                         Author = new Author {
                             FirstName = "J.R.R",
                             LastName = "Tolkien"
-                        }                   
+                        },
+                        Quantity = 100,
+                        Price = 100.99M
                     },
-                    new BookAuthor()
+                    new Book()
                     {
-                        Book = new Book()
+                        Title = "Zbrodnia i kara",
+                        BookCategories = new List<BookCategory>()
                         {
-                            Title = "Zbrodnia i kara",
-                            BookCategories = new List<BookCategory>()
-                            {
-                                new BookCategory { Category = new Category() {Name = "Powieść kryminalna" } }
-                            }
+                            new BookCategory { Category = new Category() {Name = "Powieść kryminalna" } }
                         },
                         Author = new Author {
                             FirstName = "Fiodor",
                             LastName = "Dostojewski"
-                        }
+                        },
+                        Quantity = 70,
+                        Price = 50M
                     }
                 };
-                _context.BookAuthors.AddRange(bookAuthors);
+                _context.Books.AddRange(books);
                 _context.SaveChanges();
             }
 
