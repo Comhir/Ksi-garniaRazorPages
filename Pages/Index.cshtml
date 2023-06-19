@@ -5,27 +5,31 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<table class="table table-success table-striped">
-    <tr>
-        <th>Id</th>
-        <th>Tytuł</th>
-        <th>Autor</th>
-        <th>Kategoria</th>
-        <th>Cena</th>
-        <th>Ilość</th>
-        <th>Akcja</th>
-    </tr>
-    @foreach (BookDTO b in Model.Books)
-    {
+<div class="my-5 mx-5">
+    <table class="table table-success table-striped table-bordered  table-hover ">
+        <thead class="table-dark">
         <tr>
-            <td>@b.Id</td>
-            <td>@b.Title</td>
-            <td>@b.Author.FirstName @b.Author.LastName</td>
-            <td>@b.Categories.First().Name</td>
-            <td>@b.Price</td>
-            <td>@b.Quantity</td>
-            <td>Akcja</td>
+            <th>Id</th>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Kategoria</th>
+            <th>Cena</th>
+            <th>Ilość</th>
+            <th>Akcja</th>
         </tr>
-    }
-</table>
+        </thead>
+        @foreach (BookDTO b in Model.Books)
+        {
+            <tr>
+                <td>@b.Id</td>
+                <td>@b.Title</td>
+                <td>@b.Author.FirstName @b.Author.LastName</td>
+                <td>@b.Categories.First().Name</td>
+                <td>@b.Price</td>
+                <td>@b.Quantity</td>
+                <td>Akcja</td>
+            </tr>
+        }
+
+    </table>
+</div>
