@@ -5,8 +5,8 @@ namespace KsiegarniaProject.Interfaces
 {
 	public interface IBookRepository
 	{
-		ICollection<BookAuthorCategoryDTO> GetBooks();
-		Book GetBook(int id);
+		ICollection<BookDTO> GetBooks();
+		BookDTO GetBook(int id);
 		bool BookExists(int id);
 		bool Save();
 	}

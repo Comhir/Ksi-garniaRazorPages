@@ -1,4 +1,5 @@
 ﻿using KsiegarniaProject.Data;
+using KsiegarniaProject.DTO;
 using KsiegarniaProject.Interfaces;
 using KsiegarniaProject.Models;
 
@@ -17,14 +18,30 @@ namespace KsiegarniaProject.Repositories
 			return _context.Books.Any(x => x.Id == id);
 		}
 
-		public Book GetBook(int id)
+		public BookDTO GetBook(int id)
 		{
-			return _context.Books.Where(x => x.Id == id).FirstOrDefault();
-		}
+            return _context.Books.Where(b => b.Id==id).Select(b => new BookDTO
+            {
+                Id = b.Id,
+                Author = b.Author,
+                Price = b.Price,
+                Quantity = b.Quantity,
+                Title = b.Title,
+                Categories = _context.BookCategories.Join(_context.Categories, a => a.CategoryId, b => b.Id, (a, b) => b).ToList()
+            }).FirstOrDefault();
+        }
 
-		public ICollection<Book> GetBooks()
+		public ICollection<BookDTO> GetBooks()
 		{
-			return _context.Books.ToList();
+			return _context.Books.Select(b => new BookDTO
+			{
+				Id = b.Id,
+				Author = b.Author,
+				Price = b.Price,
+				Quantity = b.Quantity,
+				Title = b.Title,
+				Categories = _context.BookCategories.Join(_context.Categories, a => a.CategoryId, b => b.Id, (a,b) => b).ToList()
+			}).ToList();
 		}
 
 		public bool Save()
