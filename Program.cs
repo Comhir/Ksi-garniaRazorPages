@@ -69,7 +69,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseStatusCodePagesWithRedirects("/Error");
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
