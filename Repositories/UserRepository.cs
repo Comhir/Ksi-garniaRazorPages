@@ -23,7 +23,12 @@ namespace KsiegarniaProject.Repositories
 
         public UserDTO GetUserById(string id)
         {
-            var roleId = _context.UserRoles.Where(u => u.UserId.Equals(id)).FirstOrDefault().RoleId;
+            var userRole = _context.UserRoles.Where(u => u.UserId.Equals(id)).FirstOrDefault();
+            if (userRole == null)
+            {
+                return null;
+            }
+            var roleId = userRole.RoleId;
             var role = _roleManager.Roles.Where(r => r.Id.Equals(roleId)).FirstOrDefault();
             return _userManager.Users
                 .AsNoTracking()

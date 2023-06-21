@@ -21,10 +21,15 @@ namespace KsiegarniaProject.Pages
 
         public string Id { get; set; }
         public UserDTO User { get; set; }
-        public async void OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             Id = id;
             User = _userRepository.GetUserById(id);
+            if (User == null)
+            {
+                return RedirectToPage("ProfileNotFound");
+            }
+            return Page();
         }
     }
 }
