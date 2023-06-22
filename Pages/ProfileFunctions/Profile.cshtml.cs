@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
-namespace KsiegarniaProject.Pages
+namespace KsiegarniaProject.Pages.ProfileFunctions
 {
     [Authorize]
     public class ProfileModel : PageModel
     {
-        private readonly IUserRepository _userRepository; 
+        private readonly IUserRepository _userRepository;
         public ProfileModel(IUserRepository userRepository)
         {
             _userRepository = userRepository;

@@ -1,5 +1,5 @@
-﻿@page "{id}"
-@model KsiegarniaProject.Pages.ProfileModel
+﻿@page "~/Profile/{id}"
+@model ProfileModel
 @{
 }
 <section class="h-100 h-custom" style="background-color: #8fc4b7;">
@@ -34,7 +34,7 @@
                                 <td>@Model.User.Role</td>
                             </tr>
                         </table>
-                        <a class="btn btn-primary" asp-page="/Logout">Wyloguj</a>
+                        <a class="btn btn-primary" asp-page="/ProfileFunctions/Logout">Wyloguj</a>
                     </div>
                 </div>
             </div>
