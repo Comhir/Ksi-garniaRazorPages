@@ -4,25 +4,27 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
-namespace KsiegarniaProject.Pages
+namespace KsiegarniaProject.Pages.ProfileFunctions
 {
-    [Authorize(Roles = "Administrator")]
-    public class RegisterModel : PageModel
+    [AllowAnonymous]
+    public class LoginModel : PageModel
     {
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RegisterModel(UserManager<AppUser> userManager, ILogger<RegisterModel> logger, RoleManager<IdentityRole> roleManager)
+        public LoginModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, ILogger<RegisterModel> logger, RoleManager<IdentityRole> roleManager)
         {
+            _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _roleManager = roleManager;
         }
-
         [BindProperty]
-        public UserRegistrationModel User { get; set; }
+        public UserLoginModel User { get; set; }
         public string ReturnUrl { get; set; }
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -34,26 +36,14 @@ namespace KsiegarniaProject.Pages
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new AppUser
-                {
-                    UserName = User.UserName,
-                    Email = User.Email,
-                };
-                var result = await _userManager.CreateAsync(user, User.Password);
+                var result = await _signInManager.PasswordSignInAsync(User.UserName, User.Password, User.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    if (!await _roleManager.RoleExistsAsync(User.Role))
-                    {
-                        return Page();
-                    }
-                    await _userManager.AddToRoleAsync(user, User.Role);
-                    _logger.LogInformation("Stworzono nowego u¿ytkownika");
+
+                    _logger.LogInformation("Zalogowa³ siê " + User.UserName);
                     return LocalRedirect(returnUrl);
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                ModelState.AddModelError(string.Empty, "Niepoprawna próba logowania");
             }
             return Page();
         }

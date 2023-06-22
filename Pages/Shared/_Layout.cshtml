@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using KsiegarniaProject.Models
 @inject SignInManager<AppUser> signInManager;
+@inject RoleManager<IdentityRole> roleManager;
+@inject UserManager<AppUser> userManager;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">KsiegarniaProject</a>
+                <a class="navbar-brand" asp-page="/Index">KsiegarniaProject</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,22 +27,36 @@
                     
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">ListaKsiążek</a>
+                            <a class="nav-link text-dark" asp-page="/Index">ListaKsiążek</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav m-lg-auto">
                         @if (signInManager.IsSignedIn(User))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Profile" asp-route-id="@signInManager.UserManager.GetUserId(User)">@User.Identity.Name</a>
+                            <li class="nav-item dropdown">
+                                <div class="dropdown">
+                                    <a class="btn text-white btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @User.Identity.Name
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropDown">
+                                        <li><a class="dropdown-item" asp-page="/ProfileFunctions/Profile" asp-route-id="@signInManager.UserManager.GetUserId(User)">Profil</a></li>
+                                        <li><a class="dropdown-item" asp-page="/ProfileFunctions/ProfileEdit" asp-route-id="@signInManager.UserManager.GetUserId(User)">Edytuj</a></li>
+                                        @if (User.IsInRole("Administrator"))
+                                        {
+                                            <li><a class="dropdown-item" asp-page="/ProfileFunctions/Register" asp-route-id="@signInManager.UserManager.GetUserId(User)">Dodaj użytkownika</a></li>
+                                        }
+                                        <li><a class="dropdown-item" asp-page="/ProfileFunctions/Logout">Wyloguj</a></li>
+                                    </ul>
+                                </div>
                             </li>
                         } else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Login">Zaloguj</a>
+                                <a class="nav-link text-dark" asp-page="/ProfileFunctions/Login">Zaloguj</a>
                             </li>
                         }
                     </ul>
