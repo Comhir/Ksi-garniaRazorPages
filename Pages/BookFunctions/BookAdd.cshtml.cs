@@ -2,27 +2,40 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using KsiegarniaProject.Models;
+using KsiegarniaProject.Interfaces;
+
 namespace KsiegarniaProject.Pages.BookFunctions
 {
 	public class BookAddModel : PageModel
 	{
-		public BookAddModel():base()
-		{
-		}
-
+        private readonly IBookRepository _bookRepository;
+        public BookAddModel(IBookRepository bookRepository)
+        {
+            _bookRepository = bookRepository;
+        }
 		[BindProperty]
-		public Book newBook { get; set; }
-		[BindProperty]
-		[Required(ErrorMessage = "Cena jest wymagana.")]
-		[Range(0, Int32.MaxValue, ErrorMessage = "Cena nie mo¿e byæ ujemna")]
-		public int price { get; set; }
-
-		public void OnGet()
+		public Author Author { get; set; }
+        [BindProperty]
+        public BookCreateModel newBook { get; set; }
+        [BindProperty]
+        public Book book { get; set; }
+        public void OnGet()
 		{
 		}
 		public IActionResult OnPost()
 		{
-			return null;
+			var x = newBook.temp.Split(' ');
+			Author = new Author();
+			Author.FirstName = x[0];
+			Author.LastName = x[1];
+			newBook.Author = Author;
+			book.Title = newBook.Title;
+            book.Price = newBook.Quantity;
+            book.Quantity = newBook.Quantity;
+			book.Author = newBook.Author;
+            _bookRepository.Create(book);
+			var y = _bookRepository.Save();
+			return RedirectToPage("/Index");
 		}
 
 	}

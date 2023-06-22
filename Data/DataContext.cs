@@ -27,12 +27,12 @@ namespace KsiegarniaProject.Data
                 .HasOne(b => b.Book)
                 .WithMany(bc => bc.BookCategories)
                 .HasForeignKey(b => b.BookId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<BookCategory>()
                 .HasOne(b => b.Category)
                 .WithMany(bc => bc.BookCategories)
                 .HasForeignKey(b => b.CategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
  
             base.OnModelCreating(builder);
         }

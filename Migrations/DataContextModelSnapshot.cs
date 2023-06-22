@@ -323,11 +323,13 @@ namespace KsiegarniaProject.Migrations
                     b.HasOne("KsiegarniaProject.Models.Book", "Book")
                         .WithMany("BookCategories")
                         .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("KsiegarniaProject.Models.Category", "Category")
                         .WithMany("BookCategories")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");

@@ -1,5 +1,60 @@
 ﻿@page
 @model KsiegarniaProject.Pages.BookFunctions.BookAddModel
 @{
+    ViewData["Title"] = "Dodaj Książkę";
+}
 
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+                         class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+                         alt="Sample photo">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-2 pb-2 pb-md-0 mb-md-3 px-md-2">Dodaj książkę do listy</h3>
+
+                        <form class="px-md-2" method="post">
+                            <div class="form-outline mb-2">
+                                <span asp-validation-for="newBook.Title" class="text-danger"></span>
+                                <label class="form-label" asp-for="newBook.Title"></label>
+                                <input type="text" asp-for="newBook.Title" class="form-control" placeholder="Podaj tytuł książki" />
+                            </div>
+
+                            <div class="form-outline mb-2">
+                                <span asp-validation-for="newBook.temp" class="text-danger"></span>
+                                <label class="form-label" asp-for="newBook.temp"></label>
+                                <input type="text" asp-for="newBook.temp" class="form-control" placeholder="Podaj imię i nazwisko Autora" />
+                            </div>
+
+                            <div class="form-outline mb-2">
+                                <span asp-validation-for="newBook.Price" class="text-danger"></span>
+                                <label class="form-label" asp-for="newBook.Price"></label>
+                                <input type="" asp-for="newBook.Price" class="form-control" placeholder="Podaj Cenę" />
+                            </div>
+
+                            <div class="form-outline mb-2">
+                                <span asp-validation-for="newBook.Quantity" class="text-danger"></span>
+                                <label class="form-label" asp-for="newBook.Quantity"></label>
+                                <input type="number" asp-for="newBook.Quantity" class="form-control" placeholder="Podaj ilość" />
+                            </div>
+
+                            
+
+                            
+
+                            <button type="submit" class="btn btn-success btn-lg mb-1">Dodaj</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    
 }

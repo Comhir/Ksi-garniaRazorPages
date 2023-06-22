@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KsiegarniaProject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230619222759_pre-v0.0.7")]
-    partial class prev007
+    [Migration("20230622181517_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -325,11 +325,13 @@ namespace KsiegarniaProject.Migrations
                     b.HasOne("KsiegarniaProject.Models.Book", "Book")
                         .WithMany("BookCategories")
                         .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("KsiegarniaProject.Models.Category", "Category")
                         .WithMany("BookCategories")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");

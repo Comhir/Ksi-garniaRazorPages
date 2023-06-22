@@ -8,6 +8,7 @@ namespace KsiegarniaProject.Repositories
 {
 	public class BookRepository : IBookRepository
 	{
+        //private int lastID;
 		private readonly DataContext _context;
 		public BookRepository(DataContext context)
 		{
@@ -19,7 +20,14 @@ namespace KsiegarniaProject.Repositories
 			return _context.Books.Any(x => x.Id == id);
 		}
 
-		public BookDTO GetBook(int id)
+        public bool Delete(int id)
+        {
+            Book temp = _context.Books.Where(b => b.Id == id).FirstOrDefault();
+            _context.Books.Remove(temp);
+            return Save();
+        }
+
+        public BookDTO GetBook(int id)
 		{
             return _context.Books.Where(b => b.Id==id).Select(b => new BookDTO
             {
@@ -56,5 +64,20 @@ namespace KsiegarniaProject.Repositories
 			var saved = _context.SaveChanges();
 			return saved > 0 ? true : false;
 		}
-	}
+        /*private int GetNextId()
+        {
+
+            if (_context.Books.Count() != 0)
+            {
+                lastID = _context.Books.LastOrDefault().Id;
+            }
+
+            int newID = lastID + 1;
+            return newID;
+        }*/
+        public void Create(Book p)
+        {
+            _context.Books.Add(p);
+        }
+    }
 }

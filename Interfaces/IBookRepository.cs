@@ -9,5 +9,7 @@ namespace KsiegarniaProject.Interfaces
 		BookDTO GetBook(int id);
 		bool BookExists(int id);
 		bool Save();
+		bool Delete(int id);
+		void Create(Book p);
 	}
 }
