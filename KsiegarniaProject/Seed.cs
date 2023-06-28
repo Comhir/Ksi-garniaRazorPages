@@ -21,21 +21,27 @@ namespace KsiegarniaProject
                 {
                     new Book()
                     {
-                       
+                        Id = 1,
                         Title = "Lord of the Rings",
                         BookCategories = new List<BookCategory>()
                         {
                             new BookCategory
                             {
-                                Category = new Category() {Name = "Fantasy" },
+                                Category = new Category() {Name = "Fantasy", Id = 1 },
+                                BookId = 1,
+                                CategoryId = 1
                             },
                             new BookCategory
                             {
-                                Category = new Category() {Name = "Przygoda" },
+                                Category = new Category() {Name = "Przygoda", Id = 2 },
+                                BookId = 1,
+                                CategoryId = 2
                             },
                             new BookCategory
                             {
-                                Category = new Category() {Name = "Powieść" },
+                                Category = new Category() {Name = "Powieść", Id = 3 },
+                                BookId = 1,
+                                CategoryId = 3
                             }
                         },
                         Author = new Author {
@@ -47,16 +53,21 @@ namespace KsiegarniaProject
                     },
                     new Book()
                     {
+                        Id = 2,
                         Title = "Zbrodnia i kara",
                         BookCategories = new List<BookCategory>()
                         {
                             new BookCategory
-                            { 
-                                Category = new Category() {Name = "Proza psychologiczna" }
+                            {
+                                Category = new Category() {Name = "Proza psychologiczna", Id = 4 },
+                                BookId = 2,
+                                CategoryId = 4
                             },
                             new BookCategory
                             {
-                                Category = new Category() {Name = "Powieść kryminalna" }
+                                Category = new Category() {Name = "Powieść kryminalna", Id = 5 },
+                                BookId = 2,
+                                CategoryId = 5
                             }
                         },
                         Author = new Author {
