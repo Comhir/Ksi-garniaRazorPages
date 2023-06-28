@@ -8,7 +8,7 @@ namespace KsiegarniaProject.Repositories
 {
 	public class BookRepository : IBookRepository
 	{
-        //private int lastID;
+        
 		private readonly IDataContext _context;
 		public BookRepository(IDataContext context)
 		{
@@ -29,7 +29,7 @@ namespace KsiegarniaProject.Repositories
 
         public BookDTO GetBook(int id)
 		{
-            return _context.Books.Where(b => b.Id==id).Select(b => new BookDTO
+            return _context.Books.Where(a => a.Id==id).Select(b => new BookDTO
             {
                 Id = b.Id,
                 Author = b.Author,
@@ -64,20 +64,11 @@ namespace KsiegarniaProject.Repositories
 			var saved = _context.SaveChanges();
 			return saved > 0 ? true : false;
 		}
-        /*private int GetNextId()
-        {
-
-            if (_context.Books.Count() != 0)
-            {
-                lastID = _context.Books.LastOrDefault().Id;
-            }
-
-            int newID = lastID + 1;
-            return newID;
-        }*/
-        public void Create(Book p)
+        
+        public bool Create(Book p)
         {
             _context.Books.Add(p);
+            return Save();
         }
     }
 }
