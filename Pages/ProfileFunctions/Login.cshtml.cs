@@ -12,35 +12,30 @@ namespace KsiegarniaProject.Pages.ProfileFunctions
     public class LoginModel : PageModel
     {
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public LoginModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, ILogger<RegisterModel> logger, RoleManager<IdentityRole> roleManager)
+        public LoginModel(SignInManager<AppUser> signInManager, ILogger<RegisterModel> logger)
         {
             _signInManager = signInManager;
-            _userManager = userManager;
             _logger = logger;
-            _roleManager = roleManager;
         }
         [BindProperty]
-        public UserLoginModel User { get; set; }
-        public string ReturnUrl { get; set; }
-        public async Task OnGetAsync(string returnUrl = null)
+        public UserLoginModel LoginUser { get; set; }
+        public string? ReturnUrl { get; set; }
+        public void OnGet(string? returnUrl = null)
         {
             ReturnUrl = returnUrl;
         }
 
         public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(User.UserName, User.Password, User.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(LoginUser.UserName, LoginUser.Password, LoginUser.RememberMe, false);
                 if (result.Succeeded)
                 {
-
-                    _logger.LogInformation("Zalogowa³ siê " + User.UserName);
+                    _logger.LogInformation("Zalogowa³ siê " + LoginUser.UserName);
                     return LocalRedirect(returnUrl);
                 }
                 ModelState.AddModelError(string.Empty, "Niepoprawna próba logowania");

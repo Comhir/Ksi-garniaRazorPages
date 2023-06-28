@@ -17,6 +17,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
+builder.Services.AddTransient<IDataContext, DataContext>();
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<IBookRepository, BookRepository>();
