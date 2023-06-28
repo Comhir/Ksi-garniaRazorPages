@@ -40,7 +40,7 @@ namespace KsiegarniaProject.Pages.BookFunctions
 				{
 					BookCategory bc = new BookCategory
 					{
-						Category = existing,
+						
 						CategoryId = existing.Id
 					};
 					book.BookCategories.Add(bc);
