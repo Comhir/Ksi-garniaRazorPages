@@ -17,23 +17,23 @@
 
                         <form asp-route-returnUrl="@Model.ReturnUrl" class="px-md-2" method="post">
                             <div class="form-outline mb-2">
-                                <span asp-validation-for="User.UserName" class="text-danger"></span>
-                                <input type="text" asp-for="User.UserName" class="form-control" />
-                                <label class="form-label" asp-for="User.UserName"></label>
+                                <span asp-validation-for="LoginUser.UserName" class="text-danger"></span>
+                                <input type="text" asp-for="LoginUser.UserName" class="form-control" />
+                                <label class="form-label" asp-for="LoginUser.UserName"></label>
                             </div>
 
                             <div class="form-outline mb-2">
-                                <span asp-validation-for="User.Password" class="text-danger"></span>
-                                <input type="password" asp-for="User.Password" class="form-control" />
-                                <label class="form-label" asp-for="User.Password"></label>
+                                <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
+                                <input type="password" asp-for="LoginUser.Password" class="form-control" />
+                                <label class="form-label" asp-for="LoginUser.Password"></label>
                             </div>
 
                       
                             <div class="mb-4">
                                 <div class="form-check">
-                                    <label asp-for="User.RememberMe">
-                                        <input asp-for="User.RememberMe" />
-                                        @Html.DisplayNameFor(m => m.User.RememberMe)
+                                    <label asp-for="LoginUser.RememberMe">
+                                        <input asp-for="LoginUser.RememberMe" />
+                                        @Html.DisplayNameFor(m => m.LoginUser.RememberMe)
                                     </label>
                                 </div>
                             </div>

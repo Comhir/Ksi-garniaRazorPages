@@ -1,22 +1,27 @@
-﻿using KsiegarniaProject.Models;
+﻿using KsiegarniaProject.Interfaces;
+using KsiegarniaProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace KsiegarniaProject.Data
 {
-    public class DataContext : IdentityDbContext<AppUser, IdentityRole, string>
+    public class DataContext : IdentityDbContext<AppUser, IdentityRole, string>, IDataContext
     {
+        public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<BookCategory> BookCategories { get; set; }
+        public virtual DbSet<AppUser> AppUsers { get; set; }
+        public virtual DbSet<IdentityRole> AppRoles { get; set; }
+        public virtual DbSet<IdentityUserRole<string>> AppUserRoles { get; set; }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options) 
         {
-            
+            AppUsers = base.Users;
+            AppRoles = base.Roles;
+            AppUserRoles = base.UserRoles;
         }
-
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<BookCategory> BookCategories { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -35,6 +40,11 @@ namespace KsiegarniaProject.Data
                 .OnDelete(DeleteBehavior.Cascade);
  
             base.OnModelCreating(builder);
+        }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
         }
     }
 }

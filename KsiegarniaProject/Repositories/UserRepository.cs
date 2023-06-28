@@ -10,11 +10,11 @@ namespace KsiegarniaProject.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DataContext _context;
+        private readonly IDataContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserRepository(DataContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserRepository(IDataContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
@@ -23,7 +23,7 @@ namespace KsiegarniaProject.Repositories
 
         public UserDTO GetUserById(string id)
         {
-            var userRole = _context.UserRoles.Where(u => u.UserId.Equals(id)).FirstOrDefault();
+            var userRole = _context.AppUserRoles.Where(u => u.UserId.Equals(id)).FirstOrDefault();
             if (userRole == null)
             {
                 return null;
@@ -56,7 +56,7 @@ namespace KsiegarniaProject.Repositories
                     LastName = u.LastName,
                     UserName = u.UserName,
                     Email = u.Email,
-                    Role = _context.UserRoles.Join(_roleManager.Roles, a => a.RoleId, b => b.Id, (a,b) => b.Name).FirstOrDefault()
+                    Role = _context.AppUserRoles.Join(_roleManager.Roles, a => a.RoleId, b => b.Id, (a,b) => b.Name).FirstOrDefault()
 
                 }).ToList();
         }

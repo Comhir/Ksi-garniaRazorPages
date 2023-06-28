@@ -1,4 +1,5 @@
 ﻿using KsiegarniaProject.Data;
+using KsiegarniaProject.Interfaces;
 using KsiegarniaProject.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -6,8 +7,8 @@ namespace KsiegarniaProject
 {
     public class Seed
     {
-        private readonly DataContext _context;
-        public Seed(DataContext context)
+        private readonly IDataContext _context;
+        public Seed(IDataContext context)
         {
             _context = context;
         }
@@ -51,7 +52,7 @@ namespace KsiegarniaProject
                         {
                             new BookCategory
                             { 
-                                Category = new Category() {Name = "Powieść" }
+                                Category = new Category() {Name = "Proza psychologiczna" }
                             },
                             new BookCategory
                             {
@@ -70,7 +71,7 @@ namespace KsiegarniaProject
                 _context.SaveChanges();
             }
 
-            if (!_context.Users.Any())
+            if (!_context.AppUsers.Any())
             {
                 string ADMIN_ID = "02174cf0–9412–4cfe-afbf-59f706d72cf6";
                 string ADMIN_ROLE_ID = "341743f0-asd2–42de-afbf-59kmkkmk72cf6";
@@ -126,11 +127,70 @@ namespace KsiegarniaProject
                     UserId = ADMIN_ID
                 };
 
-                _context.Users.AddRange(users);
-                _context.Roles.AddRange(roles);
-                _context.UserRoles.Add(userRole);
+                _context.AppUsers.AddRange(users);
+                _context.AppRoles.AddRange(roles);
+                _context.AppUserRoles.Add(userRole);
                 _context.SaveChanges();
             }
+        }
+
+        public static List<Book> GetTestBooks()
+        {
+            var books = new List<Book>()
+            {
+                new Book()
+                {
+
+                    Title = "Książka 1",
+                    BookCategories = new List<BookCategory>()
+                    {
+                        new BookCategory
+                        {
+                            Category = new Category() {Name = "Kategoira 1-1" },
+                        },
+                        new BookCategory
+                        {
+                            Category = new Category() {Name = "Kategoria 1-2" },
+                        },
+                        new BookCategory
+                        {
+                            Category = new Category() {Name = "Kategoria 1-3" },
+                        }
+                    },
+                    Author = new Author {
+                        FirstName = "Imię 1",
+                        LastName = "Nazwisko 1"
+                    },
+                    Quantity = 1000,
+                    Price = 111.11M
+                },
+                new Book()
+                {
+                    Title = "Książka 2",
+                    BookCategories = new List<BookCategory>()
+                    {
+                        new BookCategory
+                        {
+                            Category = new Category() {Name = "Kategoria 2-1" }
+                        },
+                        new BookCategory
+                        {
+                            Category = new Category() {Name = "Kategoria 2-2" }
+                        },
+                        new BookCategory
+                        {
+                            Category = new Category() {Name = "Kategoria 2-3" }
+                        }
+                    },
+                    Author = new Author {
+                        FirstName = "Imię 2",
+                        LastName = "Nazwisko 2"
+                    },
+                    Quantity = 2000,
+                    Price = 222.22M
+                }
+            };
+            return books;
         }
     }
 }

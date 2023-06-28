@@ -9,8 +9,8 @@ namespace KsiegarniaProject.Repositories
 	public class BookRepository : IBookRepository
 	{
         //private int lastID;
-		private readonly DataContext _context;
-		public BookRepository(DataContext context)
+		private readonly IDataContext _context;
+		public BookRepository(IDataContext context)
 		{
 			_context = context;
 		}
