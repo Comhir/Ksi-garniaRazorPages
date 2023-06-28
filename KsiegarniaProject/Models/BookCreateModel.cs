@@ -14,6 +14,7 @@ namespace KsiegarniaProject.Models
         public decimal Price { get; set; }
         [Display(Name = "Podaj ilość danej książki")]
         public int Quantity { get; set; }
+        [Display(Name = "Podaj Imię i Nazwisko autora Książki")]
         public string temp { get; set; }
     }
 }
