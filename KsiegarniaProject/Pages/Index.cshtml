@@ -3,7 +3,7 @@
 @using KsiegarniaProject.DTO;
 @using KsiegarniaProject.Models;
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Strona główna";
 }
 <style>
     .hidden {
@@ -83,7 +83,7 @@
                 <td>@b.Price</td>
                 <td>@b.Quantity</td>
                 <td><a class="btn btn-primary" asp-page="/BookFunctions/BookEdit">Edytuj</a>
-                    <a class="btn btn-primary" asp-page="/BookFunctions/BookDetails">Szczegóły</a>
+                    
                     <a class="btn btn-primary" asp-route-id="@b.Id" asp-page="/BookFunctions/BookDelete">Usuń</a>
                 </td>
             </tr>
