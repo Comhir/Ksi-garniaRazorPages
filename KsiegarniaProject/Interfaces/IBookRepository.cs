@@ -10,6 +10,6 @@ namespace KsiegarniaProject.Interfaces
 		bool BookExists(int id);
 		bool Save();
 		bool Delete(int id);
-		void Create(Book p);
+		bool Create(Book p);
 	}
 }

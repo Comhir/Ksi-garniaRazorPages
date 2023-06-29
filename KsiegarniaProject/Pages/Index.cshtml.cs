@@ -18,9 +18,7 @@ namespace KsiegarniaProject.Pages
         public ICollection<BookDTO> Books { get; set; }
         public void OnGet()
         {
-            Books = _bookRepository.GetBooks();
-            
-        }
-
+            Books = _bookRepository.GetBooks();    
+        } 
     }
 }
