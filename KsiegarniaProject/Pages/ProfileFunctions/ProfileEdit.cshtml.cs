@@ -19,10 +19,13 @@ namespace KsiegarniaProject.Pages.ProfileFunctions
 
         private readonly IUserRepository _userRepository;
         private readonly UserManager<AppUser> _userManager;
-        public ProfileEditModel(IUserRepository userRepository, UserManager<AppUser> userManager)
+        private readonly SignInManager<AppUser> _signInManager;
+
+        public ProfileEditModel(IUserRepository userRepository, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userRepository = userRepository;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
         public void OnGet(string id, string? returnUrl = null)
         {
@@ -40,16 +43,23 @@ namespace KsiegarniaProject.Pages.ProfileFunctions
             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPost(string? returnUrl = null)
+        public IUserRepository Get_userRepository()
         {
-            returnUrl ??= Url.Content("~/Profile");
+            return _userRepository;
+        }
+
+        public async Task<IActionResult> OnPost(string id, string? returnUrl = null)
+        {
+            Id = id;
+            returnUrl ??= Url.Content("~/");
             bool changed = false;
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            UserDTO temp = _userRepository.GetUserById(Id);
-            if(temp == null)
+            
+            AppUser temp = _userRepository.GetAppUserById(Id);
+            if (temp == null)
             {
                 return Page();
             }
@@ -76,7 +86,7 @@ namespace KsiegarniaProject.Pages.ProfileFunctions
             if (changed == true)
             {
                 var result = _userRepository.ModifyUser(temp);
-                if(!result)
+                if(result <= 0)
                 {
                     return Page();
                 } 
@@ -85,8 +95,17 @@ namespace KsiegarniaProject.Pages.ProfileFunctions
             {
                 return Page();
             }
-            AppUser us = _userRepository.GetUserById(Id);
-            var passwordResult = _userManager.ChangePasswordAsync(User, EditUser.OldPassword, EditUser.NewPassword);
+            var userInstance = _userManager.FindByIdAsync(Id);
+            var passwordResult = await _userManager.ChangePasswordAsync(userInstance.Result, EditUser.OldPassword, EditUser.NewPassword);
+            if (passwordResult.Succeeded)
+            {
+                await _signInManager.RefreshSignInAsync(userInstance.Result);
+                return Page();
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }

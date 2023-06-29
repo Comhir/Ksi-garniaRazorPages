@@ -45,6 +45,14 @@ namespace KsiegarniaProject.Repositories
                 }).FirstOrDefault();
         }
 
+        public AppUser GetAppUserById(string id)
+        {
+            return _userManager.Users
+                .AsNoTracking()
+                .Where(u => u.Id.Equals(id))
+                .FirstOrDefault();
+        }
+
         public ICollection<UserDTO> GetUsers()
         {
             return _userManager.Users
@@ -61,14 +69,10 @@ namespace KsiegarniaProject.Repositories
                 }).ToList();
         }
 
-        public bool ModifyUser(string id, UserEditModel user)
-        {
-            AppUser appUser = _context.AppUsers.Where(u => u.Id.Equals(id)).FirstOrDefault();
-            if (appUser == null) { return false; }
-            if (appUser.UserName != user.UserName) 
-            {
-                return false; 
-            }
+        public int ModifyUser(AppUser user)
+        {   
+            _context.AppUsers.Update(user);
+            return _context.SaveChanges();
         }
     }
 }

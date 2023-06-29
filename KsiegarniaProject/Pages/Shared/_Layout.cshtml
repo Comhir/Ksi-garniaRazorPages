@@ -3,7 +3,14 @@
 @inject SignInManager<AppUser> signInManager;
 @inject RoleManager<IdentityRole> roleManager;
 @inject UserManager<AppUser> userManager;
-
+@{
+    var updatedUserName = "";
+    if (signInManager.IsSignedIn(User))
+    {
+        updatedUserName = await userManager.GetUserNameAsync(await userManager.GetUserAsync(User));
+    }
+    
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +46,7 @@
                             <li class="nav-item dropdown">
                                 <div class="dropdown">
                                     <a class="btn text-white btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        @User.Identity.Name
+                                        @updatedUserName
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropDown">
