@@ -18,6 +18,7 @@ namespace KsiegarniaProject.Pages.ProfileFunctions
         {
             _signInManager = signInManager;
             _logger = logger;
+            LoginUser = new();
         }
         [BindProperty]
         public UserLoginModel LoginUser { get; set; }

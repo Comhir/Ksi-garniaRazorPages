@@ -1,61 +1,44 @@
 ﻿@page "/ProfileEdit/{id}"
 @model KsiegarniaProject.Pages.ProfileFunctions.ProfileEditModel
 @{
+    Layout = "_InputViewLayout";
 }
-<section class="h-100 h-custom" style="background-color: #8fc4b7;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-8 col-xl-6">
-                <div class="card rounded-3">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
-                         class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
-                         alt="Sample photo">
-                    <div class="card-body p-4 p-md-5">
-                        <h3 class="mb-2 pb-2 pb-md-0 mb-md-3 px-md-2">Zmień informacje</h3>
 
-                        <form asp-route-returnUrl="@Model.ReturnUrl" class="px-md-2" method="post">
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.FirstName" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.FirstName"></label>
-                                <input type="text" asp-for="User.FirstName" class="form-control" placeholder="" />
-                            </div>
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.LastName" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.LastName"></label>
-                                <input type="text" asp-for="User.LastName" class="form-control" placeholder="" />
-                            </div>
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.UserName" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.UserName"></label>
-                                <input type="text" asp-for="User.UserName" class="form-control" placeholder="Podaj nazwę użytkownika" />
-                            </div>
+<h3 class="mb-2 pb-2 pb-md-0 mb-md-3 px-md-2">Zmień informacje</h3>
 
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.Email" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.Email"></label>
-                                <input type="email" asp-for="User.Email" class="form-control" placeholder="Podaj email" />
-                            </div>
-
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.Password" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.Password"></label>
-                                <input type="password" asp-for="User.Password" class="form-control" placeholder="Nie wpisuj jeśli nie zmieniasz" />
-                            </div>
-
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.ConfirmPassword" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.ConfirmPassword"></label>
-                                <input type="password" asp-for="User.ConfirmPassword" class="form-control" placeholder="Tak jak powyżej" />
-                            </div>
-
-                            <button type="submit" class="btn btn-success btn-lg mb-1">Zmień</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+<form asp-route-returnUrl="@Model.ReturnUrl" class="px-md-2" method="post">
+    <div class="form-outline mb-2">
+        <span asp-validation-for="EditUser.FirstName" class="text-danger"></span>
+        <label class="form-label" asp-for="EditUser.FirstName"></label>
+        <input type="text" asp-for="EditUser.FirstName" class="form-control" placeholder="" />
     </div>
-</section>
+    <div class="form-outline mb-2">
+        <span asp-validation-for="EditUser.LastName" class="text-danger"></span>
+        <label class="form-label" asp-for="EditUser.LastName"></label>
+        <input type="text" asp-for="EditUser.LastName" class="form-control" placeholder="" />
+    </div>
+    <div class="form-outline mb-2">
+        <span asp-validation-for="EditUser.UserName" class="text-danger"></span>
+        <label class="form-label" asp-for="EditUser.UserName"></label>
+        <input type="text" asp-for="EditUser.UserName" class="form-control" placeholder="Podaj nazwę użytkownika" />
+    </div>
+    <div class="form-outline mb-2">
+        <span asp-validation-for="EditUser.Email" class="text-danger"></span>
+        <label class="form-label" asp-for="EditUser.Email"></label>
+        <input type="email" asp-for="EditUser.Email" class="form-control" placeholder="Podaj email" />
+    </div>
+    <div class="form-outline mb-2">
+        <span asp-validation-for="EditUser.OldPassword" class="text-danger"></span>
+        <label class="form-label" asp-for="EditUser.OldPassword"></label>
+        <input type="password" asp-for="EditUser.OldPassword" class="form-control" placeholder="Nie wpisuj jeśli nie zmieniasz" />
+    </div>
+    <div class="form-outline mb-2">
+        <span asp-validation-for="EditUser.NewPassword" class="text-danger"></span>
+        <label class="form-label" asp-for="EditUser.NewPassword"></label>
+        <input type="password" asp-for="EditUser.NewPassword" class="form-control" placeholder="Tak jak powyżej" />
+    </div>
+    <button type="submit" class="btn btn-success btn-lg mb-1">Zmień</button>
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

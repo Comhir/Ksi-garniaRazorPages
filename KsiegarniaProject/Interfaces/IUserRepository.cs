@@ -9,5 +9,6 @@ namespace KsiegarniaProject.Interfaces
     {
         ICollection<UserDTO> GetUsers();
         UserDTO GetUserById(string id);
+        bool ModifyUser(UserDTO user);
     }
 }

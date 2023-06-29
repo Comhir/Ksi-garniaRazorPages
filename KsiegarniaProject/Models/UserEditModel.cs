@@ -10,16 +10,16 @@ namespace KsiegarniaProject.Models
         [Display(Name = "Nazwisko")]
         public string? LastName { get; set; }
         [Display(Name = "Nazwa użytkownika")]
-        public string? UserName { get; set; }
+        [Required(ErrorMessage = "Nazwa użytkownika jest wymagana")]
+        public string UserName { get; set; }
         [EmailAddress]
         [Display(Name = "Email")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
-        public string? Password { get; set; }
+        [Display(Name = "Stare hasło")]
+        public string? OldPassword { get; set; }
         [DataType(DataType.Password)]
-        [Display(Name = "Powtórz hasło")]
-        [Compare("Password", ErrorMessage = "Hasła są różne<br />")]
-        public string? ConfirmPassword { get; set; }
+        [Display(Name = "Nowe hasło")]
+        public string? NewPassword { get; set; }
     }
 }

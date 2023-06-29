@@ -8,11 +8,9 @@ namespace KsiegarniaProject.Pages.ProfileFunctions
     public class LogoutModel : PageModel
     {
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
-        public LogoutModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        public LogoutModel(SignInManager<AppUser> signInManager)
         {
             _signInManager = signInManager;
-            _userManager = userManager;
         }
         public async Task<IActionResult> OnGetAsync()
         {

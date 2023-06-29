@@ -82,9 +82,15 @@
                 </td>
                 <td>@b.Price</td>
                 <td>@b.Quantity</td>
-                <td><a class="btn btn-primary" asp-page="/BookFunctions/BookEdit">Edytuj</a>
-                    <a class="btn btn-primary" asp-page="/BookFunctions/BookDetails">Szczegóły</a>
-                    <a class="btn btn-primary" asp-route-id="@b.Id" asp-page="/BookFunctions/BookDelete">Usuń</a>
+                <td>
+                    @if(User.IsInRole("Administrator") || User.IsInRole("Kierownik")) {
+                        <a class="btn btn-primary" asp-page="/BookFunctions/BookDetails">Szczegóły</a>
+                        <a class="btn btn-primary" asp-page="/BookFunctions/BookEdit">Edytuj</a>
+                        <a class="btn btn-primary" asp-route-id="@b.Id" asp-page="/BookFunctions/BookDelete">Usuń</a>
+                    } else
+                    {
+                        <a class="btn btn-primary" asp-page="/BookFunctions/BookDetails">Szczegóły</a>
+                    }
                 </td>
             </tr>
         }
