@@ -49,7 +49,12 @@
         categories.style.display = "none";
     }
 </script>
-<h1><a class="btn btn-primary" asp-page="/BookFunctions/BookAdd">Dodaj książkę</a></h1>
+<h1>
+    @if (User.IsInRole("Administrator") || User.IsInRole("Kierownik"))
+    {
+        <a class="btn btn-primary" asp-page="/BookFunctions/BookAdd">Dodaj książkę</a>
+    }
+</h1>
 <div class="my-5 mx-5">
     <table class="table table-success table-striped table-bordered table-hover">
         <thead class="table-dark">
@@ -85,7 +90,6 @@
                 <td>
                     @if(User.IsInRole("Administrator") || User.IsInRole("Kierownik")) {
                         <a class="btn btn-primary" asp-page="/BookFunctions/BookDetails">Szczegóły</a>
-                        <a class="btn btn-primary" asp-page="/BookFunctions/BookEdit">Edytuj</a>
                         <a class="btn btn-primary" asp-route-id="@b.Id" asp-page="/BookFunctions/BookDelete">Usuń</a>
                     } else
                     {
