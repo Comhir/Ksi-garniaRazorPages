@@ -1,0 +1,43 @@
+﻿@page "{id}"
+@using KsiegarniaProject.Models;
+@model KsiegarniaProject.Pages.BookFunctions.BookDetailsModel
+@{
+    Layout = "_InputViewLayout";
+    ViewData["Title"] = "Książka";
+}
+<h3 class="mb-2 pb-2 pb-md-0 mb-md-3 px-md-2">Dane książki</h3>
+<table class="table">
+    <tr>
+        <td>Tytuł</td>
+        <td>@Model.Book.Title</td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>@Model.Book.Author.FirstName @Model.Book.Author.LastName</td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                    Kategorie
+                </thead>
+                <tbody>
+                    @foreach (Category c in Model.Book.Categories)
+                    {
+                        <tr>
+                            <td>@c.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>Cena</td>
+        <td>@Model.Book.Price</td>
+    </tr>
+    <tr>
+        <td>Ilość</td>
+        <td>@Model.Book.Quantity</td>
+    </tr>
+</table>

@@ -89,7 +89,7 @@
                 <td>@b.Quantity</td>
                 <td>
                     @if(User.IsInRole("Administrator") || User.IsInRole("Kierownik")) {
-                        <a class="btn btn-primary" asp-page="/BookFunctions/BookDetails">Szczegóły</a>
+                        <a class="btn btn-primary" asp-route-id="@b.Id" asp-page="/BookFunctions/BookDetails">Szczegóły</a>
                         <a class="btn btn-primary" asp-route-id="@b.Id" asp-page="/BookFunctions/BookDelete">Usuń</a>
                     } else
                     {

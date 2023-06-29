@@ -2,61 +2,47 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Rejestracja";
+    Layout = "_InputViewLayout";
 }
 
-<section class="h-100 h-custom" style="background-color: #8fc4b7;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-8 col-xl-6">
-                <div class="card rounded-3">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
-                         class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
-                         alt="Sample photo">
-                    <div class="card-body p-4 p-md-5">
-                        <h3 class="mb-2 pb-2 pb-md-0 mb-md-3 px-md-2">Zarejestruj nowego pracownika</h3>
+<h3 class="mb-2 pb-2 pb-md-0 mb-md-3 px-md-2">Zarejestruj nowego pracownika</h3>
 
-                        <form asp-route-returnUrl="@Model.ReturnUrl" class="px-md-2" method="post">
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.UserName" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.UserName"></label>
-                                <input type="text" asp-for="User.UserName" class="form-control" placeholder="Podaj nazwę użytkownika"/>
-                            </div>
-
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.Email" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.Email"></label>
-                                <input type="email" asp-for="User.Email" class="form-control" placeholder="Podaj email"/>
-                            </div>
-
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.Password" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.Password"></label>
-                                <input type="password" asp-for="User.Password" class="form-control" placeholder="Podaj hasło"/>
-                            </div>
-
-                            <div class="form-outline mb-2">
-                                <span asp-validation-for="User.ConfirmPassword" class="text-danger"></span>
-                                <label class="form-label" asp-for="User.ConfirmPassword"></label>
-                                <input type="password" asp-for="User.ConfirmPassword" class="form-control" placeholder="Powtórz hasło" />
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" asp-for="User.Role"></label>
-                                <select asp-for="User.Role" class="select">
-                                    <option value="Kierownik">Kierownik</option>
-                                    <option value="Pracownik">Pracownik</option>
-                                </select>
-
-                            </div>
-
-                            <button type="submit" class="btn btn-success btn-lg mb-1">Utwórz</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+<form asp-route-returnUrl="@Model.ReturnUrl" class="px-md-2" method="post">
+    <div class="form-outline mb-2">
+        <span asp-validation-for="User.UserName" class="text-danger"></span>
+        <label class="form-label" asp-for="User.UserName"></label>
+        <input type="text" asp-for="User.UserName" class="form-control" placeholder="Podaj nazwę użytkownika"/>
     </div>
-</section>
+
+    <div class="form-outline mb-2">
+        <span asp-validation-for="User.Email" class="text-danger"></span>
+        <label class="form-label" asp-for="User.Email"></label>
+        <input type="email" asp-for="User.Email" class="form-control" placeholder="Podaj email"/>
+    </div>
+
+    <div class="form-outline mb-2">
+        <span asp-validation-for="User.Password" class="text-danger"></span>
+        <label class="form-label" asp-for="User.Password"></label>
+        <input type="password" asp-for="User.Password" class="form-control" placeholder="Podaj hasło"/>
+    </div>
+
+    <div class="form-outline mb-2">
+        <span asp-validation-for="User.ConfirmPassword" class="text-danger"></span>
+        <label class="form-label" asp-for="User.ConfirmPassword"></label>
+        <input type="password" asp-for="User.ConfirmPassword" class="form-control" placeholder="Powtórz hasło" />
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label" asp-for="User.Role"></label>
+        <select asp-for="User.Role" class="select">
+            <option value="Kierownik">Kierownik</option>
+            <option value="Pracownik">Pracownik</option>
+        </select>
+
+    </div>
+
+    <button type="submit" class="btn btn-success btn-lg mb-1">Utwórz</button>
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
